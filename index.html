@@ -1,54 +1,54 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Relax...</title>
-	<meta name="HandheldFriendly" content="True">
+    <meta charset="UTF-8">
+    <title>Relax...</title>
+    <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="initial-scale = 1.0">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
-	<link rel="stylesheet" href="vendor/css/grid.min.css" type-"text/css">
-	<link rel="stylesheet" href="vendor/css/meteo/stylesheet.min.css" type="text/css">
-	<link rel="stylesheet" href="vendor/css/fontello/fontello.min.css" type="text/css">
-	<link rel="stylesheet" href="vendor/css/glyphicons.min.css" type="text/css">
-	<link rel="stylesheet" href="vendor/css/editor.min.css" />
-	<link rel="stylesheet" href="static/css/fitgrd.pack.css" type="text/css">
-	<link rel="stylesheet" href="static/css/style.min.css" type="text/css">
-	<link rel="stylesheet" href="static/css/preview.min.css" type="text/css">
+    <link rel="stylesheet" href="vendor/css/grid.min.css" type-"text/css">
+    <link rel="stylesheet" href="vendor/css/meteo/stylesheet.min.css" type="text/css">
+    <link rel="stylesheet" href="vendor/css/fontello/fontello.min.css" type="text/css">
+    <link rel="stylesheet" href="vendor/css/glyphicons.min.css" type="text/css">
+    <link rel="stylesheet" href="vendor/css/editor.min.css" />
+    <link rel="stylesheet" href="static/css/fitgrd.pack.css" type="text/css">
+    <link rel="stylesheet" href="static/css/style.min.css" type="text/css">
+    <link rel="stylesheet" href="static/css/preview.min.css" type="text/css">
 </head>
 <body>
 <div class="wrapper">
 
 <header>
-	<div class="center">
-		<div class="row">
-			<div class="fg12 title-container">
-				<h1>Relax...</h1>
-			</div>
-		</div>
-	</div>
+    <div class="center">
+        <div class="row">
+            <div class="fg12 title-container">
+                <h1>Relax...</h1>
+            </div>
+        </div>
+    </div>
 </header>
 
 <section>
-	<div class="center">
-	<div class="row">
+    <div class="center">
+    <div class="row">
 
-		<div class="fg12">
-			<div id="soundlinks"></div>
-			<hr>
-			<div class="toolbar">
-				<p id="btn-save-wrapper"><a id="btn-save" href="#"><i class="glyphicon glyphicon-save"></i> Save as...</a></p>
-				<hr>
-				<p><i class="glyphicon glyphicon-open"></i> Open</p>
-				<p id="document-list"></p>
-			</div>
-			<hr>
-      <small class="notes">Made with love by <a href="https://jehaisleprintemps.net">Bruno Bord</a> and modified by <a href="https://scottgreenup.com/">Scott Greenup</a>.</small>
-		</div>
+        <div class="fg12">
+            <div id="soundlinks"></div>
+            <hr>
+            <div class="toolbar">
+                <p id="btn-save-wrapper"><a id="btn-save" href="#"><i class="glyphicon glyphicon-save"></i> Save as...</a></p>
+                <hr>
+                <p><i class="glyphicon glyphicon-open"></i> Open</p>
+                <p id="document-list"></p>
+            </div>
+            <hr>
+            <small class="notes">Made with love by <a href="https://jehaisleprintemps.net">Bruno Bord</a> and modified by <a href="https://scottgreenup.com/">Scott Greenup</a>.</small>
+        </div>
 
-	</div>
-	</div>
+    </div>
+    </div>
 </section>
 
 </div> <!-- /wrapper -->
@@ -78,99 +78,99 @@ if (!String.prototype.startsWith) {
 var myEditor;
 $(document).ready(function() {
 
-	var prefix = 'relax';
+    var prefix = 'relax';
 
-	// Load localStorage
-	var content = '';
-	if (localStorage[prefix]) {
-		content = localStorage[prefix];
-	}
+    // Load localStorage
+    var content = '';
+    if (localStorage[prefix]) {
+        content = localStorage[prefix];
+    }
 
-	myEditor = new Editor();
-	myEditor.render();
-	myEditor.codemirror.setValue(content);
+    myEditor = new Editor();
+    myEditor.render();
+    myEditor.codemirror.setValue(content);
 
-	var intervalID = window.setInterval(function() {
-		myEditor.element.value = myEditor.codemirror.getValue();
-		localStorage[prefix] = myEditor.element.value;
-	}, 500);
+    var intervalID = window.setInterval(function() {
+        myEditor.element.value = myEditor.codemirror.getValue();
+        localStorage[prefix] = myEditor.element.value;
+    }, 500);
 
 
-	function loadDocuments() {
-		// clear the list
-		$('#document-list').html('');
-		// load from localStorage
-		for (var k in localStorage) {
-			if (k.startsWith(prefix+':')) {
-				var link = $('<a/>').attr({
-					'href': '#',
-					'class': 'load',
-					'data-document': k,
-				});
-				link.html(" " + k.replace(prefix+':', ''));
-				$('#document-list').append(link);
+    function loadDocuments() {
+        // clear the list
+        $('#document-list').html('');
+        // load from localStorage
+        for (var k in localStorage) {
+            if (k.startsWith(prefix+':')) {
+                var link = $('<a/>').attr({
+                    'href': '#',
+                    'class': 'load',
+                    'data-document': k,
+                });
+                link.html(" " + k.replace(prefix+':', ''));
+                $('#document-list').append(link);
 
-				var link = $('<a/>').attr({
-					'href': '#',
-					'class': 'delete',
-					'data-document': k,
-				});
-				link.html('<i class="glyphicon glyphicon-trash"></i>');
-				$('#document-list').append(' ').append(link);
+                var link = $('<a/>').attr({
+                    'href': '#',
+                    'class': 'delete',
+                    'data-document': k,
+                });
+                link.html('<i class="glyphicon glyphicon-trash"></i>');
+                $('#document-list').append(' ').append(link);
 
-				var link = $('<a/>').attr({
-					'href': '#',
-					'class': 'download',
-					'data-document': k,
-				});
-				link.html('<i class="glyphicon glyphicon-download"></i>');
-				$('#document-list').append(' ').append(link);
+                var link = $('<a/>').attr({
+                    'href': '#',
+                    'class': 'download',
+                    'data-document': k,
+                });
+                link.html('<i class="glyphicon glyphicon-download"></i>');
+                $('#document-list').append(' ').append(link);
 
-				$('#document-list').append('<br/>');
-			}
-		};
+                $('#document-list').append('<br/>');
+            }
+        };
 
-	$('.load').on('click', function() {
-		var name = $(this).data('document');
-		myEditor.codemirror.setValue(localStorage[name]);
-	});
+    $('.load').on('click', function() {
+        var name = $(this).data('document');
+        myEditor.codemirror.setValue(localStorage[name]);
+    });
 
-	$('.delete').on('click', function() {
-		var name = $(this).data('document');
-		localStorage.removeItem(name);
-		loadDocuments();
-	});
+    $('.delete').on('click', function() {
+        var name = $(this).data('document');
+        localStorage.removeItem(name);
+        loadDocuments();
+    });
 
-	$('.download').on('click', function() {
-		var name = $(this).data('document');
-		var data = localStorage[name];
+    $('.download').on('click', function() {
+        var name = $(this).data('document');
+        var data = localStorage[name];
         var filename = name.replace(prefix+':', '')+'.md';
         saveTextAsFile(data, filename);
-	})
+    })
 
-	}
+    }
 
-	loadDocuments();
+    loadDocuments();
 
-	$('#btn-save').on('click', function() {
-		ok = false;
-		while (!ok) {
-			var name = prompt("File name?");
-			if (name === null) break;
-			if (localStorage[prefix+':'+name] === undefined) {
-				ok = true;
-			} else {
-				if (confirm('Are you sure you want to overwrite `'+name+'`?')) {
-					ok = true;
-				}
-			}
-		}
-		localStorage[prefix+':'+name] = localStorage[prefix];
-		loadDocuments();
-	});
+    $('#btn-save').on('click', function() {
+        ok = false;
+        while (!ok) {
+            var name = prompt("File name?");
+            if (name === null) break;
+            if (localStorage[prefix+':'+name] === undefined) {
+                ok = true;
+            } else {
+                if (confirm('Are you sure you want to overwrite `'+name+'`?')) {
+                    ok = true;
+                }
+            }
+        }
+        localStorage[prefix+':'+name] = localStorage[prefix];
+        loadDocuments();
+    });
 
 function destroyClickedElement(event) {
-	document.body.removeChild(event.target);
+    document.body.removeChild(event.target);
 }
 
 function saveTextAsFile(text, filename) {
