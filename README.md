@@ -1,30 +1,23 @@
 # Relax
 
-Relax is a Free (as in speech and beer) clone of [Noisli](https://noisli.com).
+Relax is a sound mixer full of relaxing and focusing sounds.
 
-To use it, you have several options:
+## Usage
 
-* Go to [the associated Github page](http://brunobord.github.io/relax/) for this project.
-* put these files and static resources somewhere on a web server. It can be local or remote.
+To use it you will have to clone this repository and host the files yourself.
 
-Browse the single ``index.html`` page using a modern browser.
+You can do this for now:
 
-## Features
+```
+git clone ...
+cd ...
+python3 -m http.server
+```
 
-* A markdown text-editor with syntax highlighting, preview, and a minimalistic styling toolbar,
-* The text is autosaved every 500ms and stored in the localStorage container,
-* You have many sounds available if you want to build a cool ambiance while you're writing (fireplace, wind in the leaves, seashore...),
-* Store and load files using the localStorage database,
-* Download the markdown file to your disk using the download icon.
+In the future I'm hoping to have it hosted on github.io or maybe even a full
+application.
 
-### Missing features
-
-(a.k.a. TODOs)
-
-* You can't adjust the sound level on the interface. The volume is set in the code. You can change it manually by editing the volume percentage *in the source code* and reload the page.
-* Should I put some LESS for the CSS customization? I'm not sure. Maybe. Help me out if you can.
-
-### Hacking on features
+### Contributing / Developing
 
 If you want to be able to produce the uglified/minified sources, you'll have to install the required dependencies like this:
 
@@ -47,26 +40,20 @@ make minify_css
 
 ## Why this project?
 
-Let me be as clear as possible: Noisli is an absolutely great concept, and it's carefully designed and suits many people's needs. But a few things were annoying me in Noisli:
+I've been listening to static-like noise for a long time to help me focus. I've
+gone through a smorgasbord of programs and have rarely been entirely satisfied.
 
-* You can only have one document handled by the editor, no "save for later use",
-* No syntax highlighting,
-* What's the point in the smoothly-changing background color? At some point, it's unreadable and unusable (white on yellow, really?),
-* White noise? Pink noise? Brown noise? Really?
-* Preview view is not different enough from the editor for my tastes. I needed a "closer-to-the-html" preview (sans-serif fonts, for example).
-* You can't use it if you're not connected to the Internet. If only I could have a copy of Noisli for local / offline use, that'd be great.
+Noisli was the first application that really hit the money, albeit limited in
+it's sound library. I was extremely disappointed to see them put up such a
+massive paywall.
 
-All these (minor) glitches have led me to grab my favorite text editor and build my custom clone of Noisli.
+I found this project developed by Bruno Bord and decided to fork it and develop
+it into a more comprehensive application dedicated to listening to sounds. I
+don't find a need to have an integrated editor when you can just use other
+editors while listening to sounds.
 
-## Note on privacy
-
-The edited text in this interface is stored on your localStorage database.
-
-You can check the source code, nothing is stored on the server. I will never **EVER** read your documents. It's all yours.
-
-It also means this content is associated to the "domain name" you're on (whether it is github pages, your local static HTTP server, your own remote web server, etc) **AND** your web browser.
-
-If you switch from a machine to another or if you swap from Firefox to Chrome or vice-versa, your content won't show up. And even if you're on the same machine/browser and use a different URL to access this interface, your localStorage database will be different. Use the "download" feature to safely copy your content from a machine to another and sync it your way if you intend to transfer it on another pair (URL / client).
+The goal is to have a self-contained application that anyone can just setup and
+use.
 
 ## License
 
